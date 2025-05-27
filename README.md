@@ -1,98 +1,283 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Simple NestJS - Mongo - RBAC Boilerplate
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+A **SIMPLE** boilerplate project using **NestJS** and **MongoDB**, built with **Clean Architecture** in mind. This template promotes scalable, maintainable backend development with support for **RBAC (Role-Based Access Control)** and modular code organization.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## 🔥 Features
 
-## Description
+- ⚙️ **NestJS**: Progressive Node.js framework
+- 🧩 **MongoDB** with Mongoose ODM
+- 🧼 **Clean Architecture** with layered separation:
+    - **Controllers** – handle routing and input
+    - **Services** – contain business logic
+    - **Repositories** – abstract data access
+    - **Schemas/Entities** – define data models
+- 🔐 **RBAC (Role-Based Access Control)**:
+    - Easily protect routes with role decorators
+    - Assign permissions by user roles
+- 🧰 Organized module-based structure
+- 🌐 Environment config via `.env` support
+- 📦 Easily extensible for microservices or monoliths
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## 🏗️ Clean Architecture Overview
 
-## Project setup
+This boilerplate implements **Clean Architecture** (also known as Hexagonal Architecture) to ensure:
 
-```bash
-$ npm install
+- **Separation of Concerns**: Each layer has a specific responsibility
+- **Framework Independence**: Business logic is isolated from external frameworks
+- **Testability**: Easy to unit test each component independently
+- **Maintainability**: Code is organized in a scalable and readable structure
+
+### Architecture Layers
+
+```
+src/
+├── modules/              # Feature modules (Clean Architecture modules)
+│   ├── auth/
+│   │   ├── controllers/  # HTTP layer - handles requests/responses
+│   │   ├── services/     # Business logic layer
+│   │   ├── repositories/ # Data access layer
+│   │   ├── dto/          # Data transfer objects
+│   │   ├── entities/     # Domain entities
+│   │   └── auth.module.ts
+│   └── users/
+│       ├── controllers/
+│       ├── services/
+│       ├── repositories/
+│       ├── dto/
+│       ├── entities/
+│       └── users.module.ts
+├── common/               # Shared utilities and configurations
+├── config/               # Application configuration
+└── main.ts              # Application entry point
 ```
 
-## Compile and run the project
+## ✨ Key Features
 
+### 🎯 Clean Architecture Implementation
+- **Modular Structure**: Each feature is encapsulated in its own module
+- **Controller Layer**: Handles HTTP requests and responses
+- **Service Layer**: Contains business logic and use cases
+- **Repository Layer**: Manages data persistence and retrieval
+- **Entity Layer**: Defines domain models and business rules
+
+### 🛠️ Technical Stack
+- **NestJS**: Progressive Node.js framework
+- **MongoDB**: NoSQL database with Mongoose ODM
+- **TypeScript**: Type-safe development
+- **JWT Authentication**: Secure user authentication
+- **Validation**: Request/response validation with class-validator
+- **Documentation**: Auto-generated API documentation with Swagger
+
+### 🔒 Security Features
+- JWT token-based authentication
+- Password hashing with bcrypt
+- Request validation and sanitization
+- CORS configuration
+- Rate limiting
+
+## 🚀 Quick Start
+
+### Prerequisites
+- Node.js (v16 or higher)
+- MongoDB instance
+- npm or yarn
+
+### Installation
+
+1. **Clone the repository**
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+git clone https://github.com/jaydenhnguyen/nestjs-mongo-boilerplate.git
+cd nestjs-mongo-boilerplate
 ```
 
-## Run tests
-
+2. **Install dependencies**
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+npm install
 ```
 
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
+3. **Environment Configuration**
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+cp .env.example .env
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+Configure your environment variables:
+```env
+# Database
+MONGODB_URI=mongodb://localhost:27017/nestjs-boilerplate
 
-## Resources
+# JWT
+JWT_SECRET=your-jwt-secret
+JWT_EXPIRES_IN=7d
 
-Check out a few resources that may come in handy when working with NestJS:
+# Application
+PORT=3000
+NODE_ENV=development
+```
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+4. **Run the application**
+```bash
+# Development mode
+npm run start:dev
 
-## Support
+# Production mode
+npm run start:prod
+```
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+## 📁 Project Structure
 
-## Stay in touch
+### Module Organization
+Each feature module follows the clean architecture pattern:
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+```typescript
+// Example: Users Module Structure
+users/
+├── controllers/
+│   └── users.controller.ts     # HTTP layer
+├── services/
+│   └── users.service.ts        # Business logic
+├── repositories/
+│   └── users.repository.ts     # Data access
+├── dto/
+│   ├── create-user.dto.ts      # Input validation
+│   └── user-response.dto.ts    # Output formatting
+├── entities/
+│   └── user.entity.ts          # Domain model
+└── users.module.ts             # Module configuration
+```
 
-## License
+### Controller Layer
+Handles HTTP requests and delegates to services:
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+```typescript
+@Controller('users')
+export class UsersController {
+  constructor(private readonly usersService: UsersService) {}
+
+  @Post()
+  async create(@Body() createUserDto: CreateUserDto) {
+    return this.usersService.create(createUserDto);
+  }
+}
+```
+
+### Service Layer
+Contains business logic and coordinates between layers:
+
+```typescript
+@Injectable()
+export class UsersService {
+  constructor(private readonly usersRepository: UsersRepository) {}
+
+  async create(createUserDto: CreateUserDto): Promise<User> {
+    // Business logic here
+    return this.usersRepository.create(createUserDto);
+  }
+}
+```
+
+### Repository Layer
+Manages database operations:
+
+```typescript
+@Injectable()
+export class UsersRepository {
+  constructor(@InjectModel(User.name) private userModel: Model<User>) {}
+
+  async create(userData: CreateUserDto): Promise<User> {
+    const user = new this.userModel(userData);
+    return user.save();
+  }
+}
+```
+
+## 🔧 Configuration
+
+### Database Configuration
+Configure MongoDB connection in `src/config/database.config.ts`:
+
+```typescript
+export const databaseConfig = {
+  uri: process.env.MONGODB_URI,
+  options: {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  },
+};
+```
+
+### Module Registration
+Register new modules in `app.module.ts`:
+
+```typescript
+@Module({
+  imports: [
+    ConfigModule.forRoot(),
+    MongooseModule.forRootAsync(databaseConfig),
+    AuthModule,
+    UsersModule,
+    // Add your new modules here
+  ],
+})
+export class AppModule {}
+```
+
+## 🛡️ Best Practices Implemented
+
+### Clean Architecture Principles
+- **Dependency Inversion**: High-level modules don't depend on low-level modules
+- **Single Responsibility**: Each class has one reason to change
+- **Interface Segregation**: Clients depend only on interfaces they use
+- **Open/Closed Principle**: Open for extension, closed for modification
+
+### NestJS Best Practices
+- **Modular Design**: Features organized in separate modules
+- **Dependency Injection**: Loose coupling between components
+- **Guards and Interceptors**: Cross-cutting concerns handled elegantly
+- **DTO Validation**: Strong input validation with decorators
+
+### Environment Variables for Production
+```env
+NODE_ENV=production
+MONGODB_URI=mongodb://your-production-db
+JWT_SECRET=your-strong-production-secret
+PORT=3000
+```
+
+## 📈 Scaling Considerations
+
+The clean architecture enables easy scaling:
+
+- **Horizontal Scaling**: Stateless services can be replicated
+- **Database Scaling**: Repository pattern allows easy database switching
+- **Microservices**: Modules can be extracted into separate services
+- **Testing**: Each layer can be tested independently
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Follow the clean architecture patterns
+4. Write tests for your changes
+5. Commit your changes (`git commit -m 'Add amazing feature'`)
+6. Push to the branch (`git push origin feature/amazing-feature`)
+7. Open a Pull Request
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 👨‍💻 Author
+
+**Jayden H. Nguyen**
+- GitHub: [@jaydenhnguyen](https://github.com/jaydenhnguyen)
+- Repository: [nestjs-mongo-boilerplate](https://github.com/jaydenhnguyen/nestjs-mongo-boilerplate)
+
+## 🙏 Acknowledgments
+
+- Built with [NestJS](https://nestjs.com/)
+- Follows [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) principles
+- Inspired by Uncle Bob's architectural guidelines
+
+---
+
+**Ready to build scalable applications with clean, maintainable code? This boilerplate provides the perfect foundation with its clean architecture implementation featuring separate modules, controllers, services, and repositories.**
